@@ -8,4 +8,8 @@ stripe:
   enabled: true
   supported-currencies: USD,EUR,GBP
 
+mail:
+  port: 8080
+  host: https://smpt.gmail.com
+
 payment-gateway: payPal
