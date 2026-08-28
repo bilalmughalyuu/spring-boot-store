@@ -9,13 +9,10 @@ public class HomeController {
 
     @Value("${spring.application.name}")
     private String appName;
-    @Value("${app.page-size}")
-    private String pageSize;
 
     @RequestMapping("/")
     public String index() {
         System.out.println(appName);
-        System.out.println(pageSize);
         return "index.html";
     }
 }
