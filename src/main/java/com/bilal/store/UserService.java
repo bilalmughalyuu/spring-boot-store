@@ -18,6 +18,6 @@ public class UserService {
         }
 
         userRepository.save(user);
-        notificationService.send("Registeration successfull ", user.getEmail() );
+        notificationService.send("Registration successfully ", user.getEmail() );
     }
 }

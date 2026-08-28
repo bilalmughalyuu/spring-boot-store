@@ -2,16 +2,22 @@ spring:
   application:
     name: store
   datasource:
-#    url: jdbc:mysql://localhost:3306/store?createDatabaseIfNotExist=true
-    url: jdbc:mysql://127.0.0.1:3306/springStore?createDatabaseIfNotExist=true
+    url: jdbc:mysql://127.0.0.1:3306/store?createDatabaseIfNotExist=true
     username: root
     password: 9090
+  flyway:
+    locations: classpath:db/migration
+
+app:
+  page-size: 10
 
 stripe:
   apiUrl: https://api.stripe.com
   timeout: 1000
   enabled: true
   supported-currencies: USD,EUR,GBP
+  stripeApiUrl: https://api.stripe.com
+  payPalApiUrl: https://api.stripe.com
 
 mail:
   port: 8080
