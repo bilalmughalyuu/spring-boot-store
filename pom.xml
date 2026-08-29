@@ -70,6 +70,11 @@
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-mysql</artifactId>
         </dependency>
+        <dependency>
+            <artifactId>lombok</artifactId>
+            <groupId>org.projectlombok</groupId>
+            <scope>annotationProcessor</scope>
+        </dependency>
     </dependencies>
 
     <build>

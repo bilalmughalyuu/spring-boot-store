@@ -1,7 +1,6 @@
-package com.bilal.store;
+package com.bilal.store.learning;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
 
 //@Service("paypal")
 public class PayPalPaymentService implements PaymentService{

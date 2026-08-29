@@ -1,4 +1,4 @@
-package com.bilal.store;
+package com.bilal.store.learning;
 
 import org.springframework.stereotype.Repository;
 
