@@ -1,16 +1,17 @@
 package com.bilal.store.services;
 
 import com.bilal.store.entities.Address;
+import com.bilal.store.entities.Category;
 import com.bilal.store.entities.Product;
 import com.bilal.store.entities.User;
-import com.bilal.store.repositories.AddressRepository;
-import com.bilal.store.repositories.ProductRepository;
-import com.bilal.store.repositories.ProfileRepository;
-import com.bilal.store.repositories.UserRepository;
+import com.bilal.store.repositories.*;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
+import java.util.List;
 
 @AllArgsConstructor
 @Service
@@ -20,6 +21,7 @@ public class UserService {
     private final EntityManager entityManager;
     private final AddressRepository addressRepository;
     private final ProductRepository productRepository;
+    private final CategoryRepository categoryRepository;
 
     @Transactional
     public void showEntityStates() {
@@ -77,9 +79,33 @@ public class UserService {
         userRepository.deleteById(2L);
     }
 
+    @Transactional
     public void createProduct() {
-        var product = Product.bu
-        productRepository
+        var category = categoryRepository.findById((byte)1).orElseThrow();
+
+        var product = Product.builder()
+                .name("product 2")
+                .description("description 2")
+                .price(BigDecimal.valueOf(4.50))
+                .category(category)
+                .build();
+        productRepository.save(product);
+    }
+
+    @Transactional
+    public void addProductsToUserWishlist() {
+        var user = userRepository.findById(5L).orElseThrow();
+
+        var products = productRepository.findAll();
+
+        products.forEach(user::addFavoriteProduct);
+
+        userRepository.save(user);
+    }
+
+    @Transactional
+    public void deleteProductAndWishlist() {
+        productRepository.deleteById(1L);
     }
 
 //    @Transactional
@@ -89,4 +115,9 @@ public class UserService {
 //        user.removeAddress(address);
 //        userRepository.save(user);
 //    }
+
+    @Transactional
+    public void updateProductPrices() {
+        productRepository.updatePriceByCategory(BigDecimal.valueOf(10), (byte)1);
+    }
 }
