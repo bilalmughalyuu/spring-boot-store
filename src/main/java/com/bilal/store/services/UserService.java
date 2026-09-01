@@ -1,9 +1,6 @@
 package com.bilal.store.services;
 
-import com.bilal.store.entities.Address;
-import com.bilal.store.entities.Category;
-import com.bilal.store.entities.Product;
-import com.bilal.store.entities.User;
+import com.bilal.store.entities.*;
 import com.bilal.store.repositories.*;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
@@ -11,6 +8,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 @AllArgsConstructor
@@ -143,7 +141,62 @@ public class UserService {
         });
     }
 
+    @Transactional
     public void finalExercise() {
+//        var user1 = User.builder()
+//                .name("User 1")
+//                .email("email1@example.com")
+//                .password("password1")
+//                .build();
+//        var user2 = User.builder()
+//                .name("User 2")
+//                .email("email2@example.com")
+//                .password("password2")
+//                .build();
+//        var user3 = User.builder()
+//                .name("User 3")
+//                .email("email3@example.com")
+//                .password("password3")
+//                .build();
+//
+//        var profile1 = Profile.builder()
+//                .bio("I am User 1")
+//                .phoneNumber("123456789")
+//                .dateOfBirth(LocalDate.of(1995, 6, 28))
+//                .loyaltyPoints(5)
+//                .build();
+//
+//        var profile2 = Profile.builder()
+//                .bio("I am User 2")
+//                .phoneNumber("123456789")
+//                .dateOfBirth(LocalDate.of(1996, 6, 28))
+//                .loyaltyPoints(10)
+//                .build();
+//
+//        var profile3 = Profile.builder()
+//                .bio("I am User 3")
+//                .phoneNumber("123456789")
+//                .dateOfBirth(LocalDate.of(1997, 6, 28))
+//                .loyaltyPoints(10)
+//                .build();
+//
+//        user1.setProfile(profile1);
+//        user2.setProfile(profile2);
+//        user3.setProfile(profile3);
+//
+//        List<User> users = List.of(user1, user2, user3);
+//
+//        userRepository.saveAll(users);
+//        var profiles = profileRepository.findProfilesWithLoyaltyPointsGreaterThan(2);
+//        profiles.forEach(profile -> {
+//            System.out.println("Profile ID: " + profile.getId());
+//            System.out.println("User Email: " + profile.getEmail().getEmail());
+//        });
 
+        var profiles = userRepository.findUsersByProfileLoyaltyPointsGreaterThan(2);
+        profiles.forEach(profile -> {
+            System.out.println("Profile ID: " + profile.getId());
+            System.out.println("User Email: " + profile.getEmail());
+        });
     }
 }

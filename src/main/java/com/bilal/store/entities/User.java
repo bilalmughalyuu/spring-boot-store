@@ -60,8 +60,13 @@ public class User {
     }
 
 
-//    @OneToOne(mappedBy = "user", cascade = CascadeType.REMOVE)
-//    private Profile profile;
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Profile profile;
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
+        profile.setUser(this);
+    }
 
     @ManyToMany
     @JoinTable(
