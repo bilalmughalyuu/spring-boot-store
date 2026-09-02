@@ -5,6 +5,8 @@ import com.bilal.store.repositories.*;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -122,7 +124,23 @@ public class UserService {
     @Transactional
     public void fetchProducts() {
 //        var products = productRepository.findByCategory(new Category((byte)1));
-        var products = productRepository.findProducts(BigDecimal.valueOf(1), BigDecimal.valueOf(20));
+//        var products = productRepository.findProducts(BigDecimal.valueOf(1), BigDecimal.valueOf(20));
+//        products.forEach(System.out::println);
+        var product = new Product();
+        product.setName("product");
+
+        var matcher = ExampleMatcher.matching()
+                .withIncludeNullValues()
+                .withIgnorePaths("id","description")
+                .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
+
+        var example = Example.of(product, matcher);
+        var products = productRepository.findAll(example);
+        products.forEach(System.out::println);
+    }
+
+    public void fetchProductsByCriteria() {
+        var products = productRepository.findProductsByCriteria("prod", BigDecimal.valueOf(1), null);
         products.forEach(System.out::println);
     }
 
