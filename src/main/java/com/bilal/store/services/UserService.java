@@ -145,6 +145,16 @@ public class UserService {
         products.forEach(System.out::println);
     }
 
+    public void findProductByCategoryUsingCriteriaApi(Long categoryId ) {
+        var products = productRepository.findProductsByCategory(categoryId);
+        products.forEach(System.out::println);
+    }
+
+    public void fetchProductsByCategoryUsingSpecificationApi(Long categoryId) {
+        var products = productRepository.findProductsByCategory(categoryId);
+        products.forEach(System.out::println);
+    }
+
 
     public void fetchProductsBySpecifications(String name, BigDecimal minPrice, BigDecimal maxPrice) {
         Specification<Product> spec = (root, query, criteriaBuilder) -> null;
